@@ -1,73 +1,102 @@
-# CypherAnalytics
+# CypherAnalytics: Next-Gen Fintech Privacy & Anomaly Monitoring
 
-> Privacy-Preserving Real-Time Financial Intelligence Platform
+**CypherAnalytics** is a sophisticated full-stack application designed to give Security Operations (SecOps) teams a unified, real-time interface for monitoring high-velocity financial transactions. It bridges the gap between active anomaly detection (Fraud) and rigorous data protection (Privacy), giving teams total observability over how sensitive data is handled in transit.
 
-CypherAnalytics is an enterprise-grade platform combining real-time financial transaction monitoring with zero PII (Personally Identifiable Information) exposure analytics. It proves that aggressive fraud detection and strict data privacy are not mutually exclusive.
+## Key Features
 
-## Features
+1. **Real-Time Transaction Feed & Anomaly Detection**
+   - Simulated live traffic using a high-throughput Node.js generator.
+   - Algorithmic risk scoring (0-100) dynamically evaluates transactions for fraud markers (e.g., suspicious amounts, impossible travel scenarios, high-risk vendors).
 
-- **Real-Time Fraud Detection:** Advanced multi-factor risk engine analyzing live, high-velocity data streams.
-- **Zero PII Dashboard:** Uncompromised security ensuring raw sensitive data never reaches the user interface unless authorized.
-- **Role-Based Graduated Visibility:** Three-tier access controls (Admin, Analyst, Viewer) offering dynamic data redaction and masking.
-- **Multi-Currency Support:** Dynamically formatted currency across all metrics and charts (USD, INR, EUR, GBP).
-- **Interactive Alerts:** Assess and escalate high-risk transactions instantly from the dashboard.
-- **Explainable Privacy:** Full transparency into field-level classifications, encryption status, and dynamic privacy scoring.
+2. **Privacy Intelligence & Dynamic Encryption (System Guard)**
+   - Protects payloads in transit and at rest using AES-256-CBC encryption and K-anonymization hashing techniques.
+   - Live **Privacy Score** and Obfuscation Confidence tracking.
+   - Schema field mapping details what properties are classified as "Highly Sensitive", "PII", or "Public".
 
-## Tech Stack
+3. **Role-Based Access Control (RBAC) Simulator**
+   - Security configurations built directly into the UI to demonstrate how roles dynamically transform data pipelines.
+   - **Admin:** Views true encrypted string representations.
+   - **Analyst:** Views partially masked data (e.g., `********4829`) required for compliance investigation.
+   - **Viewer:** Views completely hidden PII, permitting only aggregated dashboard utilization.
 
-- **Frontend:** React, Vite, Lucide React (Icons), Custom CSS (Theming)
-- **Backend:** Node.js, Express.js
-- **Database:** MongoDB (with AES-256-CBC encryption for sensitive fields at rest)
+4. **Interactive Analytics Dashboard**
+   - **Transaction Volume:** Live "heartbeat" style data aggregation plotting the flow of traffic over time.
+   - **Risk Score Distribution:** Monochromatic charting of standard vs. outlier activities.
+   - **Geographic Movement:** Location-based distribution visualization to highlight transaction hot-spots.
 
-## Getting Started
+## Tech Stack Overview
 
-### Prerequisites
+- **Frontend:** React.js, Vite, Recharts (Dynamic Visualization), Lucide React (Icons).
+- **Backend Core:** Node.js, Express.js.
+- **Database:** MongoDB (Mongoose Schema mapping).
+- **Authentication:** JWT (JSON Web Tokens), bcryptjs for secure password hashing.
+- **Microservices:** Inter-process synthetic transaction generation driving real-world financial traffic scenarios.
 
-- Node.js (v16+)
-- MongoDB instance (local or Atlas)
+---
 
-### Installation
+## 🚀 Getting Started
 
-1. Clone the repository:
+### 1. Prerequisites
+- **Node.js**: v18 or newer
+- **MongoDB**: A running local or cloud instance.
+
+### 2. Environment Setup
+
+**Backend Configuration (`backend/.env`)**
+```env
+PORT=5001
+MONGODB_URI=mongodb://127.0.0.1:27017/fintechDB
+JWT_SECRET=your_super_secret_key_here
+```
+
+### 3. Installation
+
+**Install Backend Dependencies**
+```bash
+cd backend
+npm install
+```
+
+**Install Frontend Dependencies**
+```bash
+cd frontend
+npm install
+```
+
+### 4. Running the Application
+
+This project runs utilizing three core processes:
+
+1. **Start the API Server**
    ```bash
-   git clone https://github.com/abeyakilesh/CypherAnalytics.git
-   cd CypherAnalytics
-   ```
-
-2. Install dependencies for both frontend and backend:
-   ```bash
-   cd backend && npm install
-   cd ../frontend && npm install
-   ```
-
-3. Configure Environment Variables:
-   Create a `.env` file in the `backend` directory:
-   ```env
-   PORT=5000
-   MONGO_URI=your_mongodb_connection_string
-   JWT_SECRET=your_jwt_secret
-   ENCRYPTION_KEY=your_32_byte_hex_encryption_key
-   ```
-
-4. Start the Application:
-   Run the backend and frontend dev servers:
-   ```bash
-   # Terminal 1: Backend
    cd backend
-   npm run dev
+   node server.js
+   ```
 
-   # Terminal 2: Frontend
+2. **Start the Live Transaction Generator** (Feeds live data into the DB)
+   ```bash
+   cd backend
+   node services/syntheticTransactionGenerator.js
+   ```
+
+3. **Start the Frontend UI**
+   ```bash
    cd frontend
    npm run dev
    ```
 
-## Architecture
+Navigate to `http://localhost:5173` to view the CypherAnalytics platform. You can log in using the default setup or sign up for a new analytical account.
 
-The platform uses a modular design:
-- **Real-Time Layer:** Node.js API with WebSocket for sub-second data broadcasting.
-- **Storage Layer:** MongoDB optimized for fast queries with encrypted fields.
-- **Decoupled Services:** Independent microservices for encryption, privacy masking, risk detection, and synthetic data generation.
+---
 
-## License
+## Deployment Architecture
 
-MIT
+CypherAnalytics is structured to scale. The current pipeline supports easy deployment vectors:
+- **Frontend Layer:** Vercel or Netlify via direct GitHub integration.
+- **API & Compute:** Render or Heroku Web Services handling the Express routes and generator worker loops.
+- **Database Layer:** MongoDB Atlas for resilient, globally redundant document storage.
+
+## UI Design Aesthetics
+The visual identity of CypherAnalytics utilizes a deep-space monochromatic palette prioritizing a reduction in cognitive load for analysts. Glassmorphism, subtle interactive micro-animations, and synchronized 60FPS charting render a premium, next-generation operational environment.
+
+*This project was developed for advanced study in FinTech architectural design, integrating concepts of complex UI state management, real-time data streaming, and applied cryptography.*

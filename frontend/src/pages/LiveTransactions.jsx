@@ -1,11 +1,12 @@
-import { useState } from 'react';
-import { Activity, ChevronLeft, ChevronRight } from 'lucide-react';
+import React, { useState } from 'react';
+import { Activity, ChevronLeft, ChevronRight, ChevronDown, ChevronUp } from 'lucide-react';
 import { useCurrency } from '../context/CurrencyContext';
 
 const PAGE_SIZE = 15;
 
 export default function LiveTransactions({ transactions }) {
     const [page, setPage] = useState(0);
+    const [expandedRow, setExpandedRow] = useState(null);
     const { formatCurrency } = useCurrency();
     const totalPages = Math.max(1, Math.ceil(transactions.length / PAGE_SIZE));
     const paginated = transactions.slice(page * PAGE_SIZE, (page + 1) * PAGE_SIZE);
@@ -40,24 +41,62 @@ export default function LiveTransactions({ transactions }) {
                         </thead>
                         <tbody>
                             {paginated.map((tx, i) => (
-                                <tr key={tx.transactionID || i} className="table-row" style={{ borderBottom: '1px solid var(--border-light)' }}>
-                                    <td style={{ padding: '12px 20px' }}>
-                                        <span className={`badge ${tx.status === 'suspicious' ? 'badge-danger' : 'badge-success'}`}>
-                                            {tx.status === 'suspicious' ? 'Suspicious' : 'Normal'}
-                                        </span>
-                                    </td>
-                                    <td style={{ padding: '12px 20px', fontSize: '13px', color: 'var(--text-secondary)', fontFamily: 'monospace' }}>{tx.userName || tx.userID}</td>
-                                    <td style={{ padding: '12px 20px', fontSize: '13px', color: 'var(--text-muted)', fontFamily: 'monospace' }}>{tx.accountNumber}</td>
-                                    <td style={{ padding: '12px 20px', fontSize: '14px', fontWeight: 600, color: 'var(--text)', textAlign: 'right' }}>{formatCurrency(tx.amount)}</td>
-                                    <td style={{ padding: '12px 20px', fontSize: '14px', color: 'var(--text)' }}>{tx.merchant}</td>
-                                    <td style={{ padding: '12px 20px', fontSize: '14px', color: 'var(--text-secondary)' }}>{tx.location}</td>
-                                    <td style={{ padding: '12px 20px', fontSize: '12px', color: 'var(--text-muted)' }}>{new Date(tx.timestamp).toLocaleTimeString()}</td>
-                                    <td style={{ padding: '12px 20px', textAlign: 'center' }}>
-                                        <span className={`badge ${tx.riskScore > 70 ? 'badge-danger' : tx.riskScore > 40 ? 'badge-warning' : 'badge-success'}`}>
-                                            {tx.riskScore}
-                                        </span>
-                                    </td>
-                                </tr>
+                                <React.Fragment key={tx.transactionID || i}>
+                                    <tr
+                                        onClick={() => setExpandedRow(expandedRow === tx.transactionID ? null : tx.transactionID)}
+                                        className="table-row"
+                                        style={{
+                                            borderBottom: expandedRow === tx.transactionID ? 'none' : '1px solid var(--border-light)',
+                                            cursor: 'pointer',
+                                            background: expandedRow === tx.transactionID ? 'var(--bg-table-head)' : 'transparent'
+                                        }}>
+                                        <td style={{ padding: '12px 20px' }}>
+                                            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                                                {expandedRow === tx.transactionID ? <ChevronUp size={14} color="var(--text-muted)" /> : <ChevronDown size={14} color="var(--text-muted)" />}
+                                                <span className={`badge ${tx.status === 'suspicious' ? 'badge-danger' : 'badge-success'}`}>
+                                                    {tx.status === 'suspicious' ? 'Suspicious' : 'Normal'}
+                                                </span>
+                                            </div>
+                                        </td>
+                                        <td style={{ padding: '12px 20px', fontSize: '13px', color: 'var(--text-secondary)', fontFamily: 'monospace' }}>{tx.userName || tx.userID}</td>
+                                        <td style={{ padding: '12px 20px', fontSize: '13px', color: 'var(--text-muted)', fontFamily: 'monospace' }}>{tx.accountNumber}</td>
+                                        <td style={{ padding: '12px 20px', fontSize: '14px', fontWeight: 600, color: 'var(--text)', textAlign: 'right' }}>{formatCurrency(tx.amount)}</td>
+                                        <td style={{ padding: '12px 20px', fontSize: '14px', color: 'var(--text)' }}>{tx.merchant}</td>
+                                        <td style={{ padding: '12px 20px', fontSize: '14px', color: 'var(--text-secondary)' }}>{tx.location}</td>
+                                        <td style={{ padding: '12px 20px', fontSize: '12px', color: 'var(--text-muted)' }}>{new Date(tx.timestamp).toLocaleTimeString()}</td>
+                                        <td style={{ padding: '12px 20px', textAlign: 'center' }}>
+                                            <span className={`badge ${tx.riskScore > 70 ? 'badge-danger' : tx.riskScore > 40 ? 'badge-warning' : 'badge-success'}`}>
+                                                {tx.riskScore}
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    {expandedRow === tx.transactionID && (
+                                        <tr style={{ background: 'var(--bg-table-head)', borderBottom: '1px solid var(--border-light)' }}>
+                                            <td colSpan={8} style={{ padding: '24px 44px' }}>
+                                                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '24px' }}>
+                                                    <div>
+                                                        <p style={{ fontSize: '12px', color: 'var(--text-muted)', marginBottom: '4px' }}>Transaction ID</p>
+                                                        <p style={{ fontSize: '13px', fontWeight: 500, color: 'var(--text)', fontFamily: 'monospace' }}>{tx.transactionID}</p>
+                                                    </div>
+                                                    <div>
+                                                        <p style={{ fontSize: '12px', color: 'var(--text-muted)', marginBottom: '4px' }}>Full Timestamp</p>
+                                                        <p style={{ fontSize: '13px', fontWeight: 500, color: 'var(--text)' }}>{new Date(tx.timestamp).toLocaleString()}</p>
+                                                    </div>
+                                                    <div>
+                                                        <p style={{ fontSize: '12px', color: 'var(--text-muted)', marginBottom: '4px' }}>Processing Status</p>
+                                                        <p style={{ fontSize: '13px', fontWeight: 500, color: 'var(--text)' }}>Completed</p>
+                                                    </div>
+                                                    <div>
+                                                        <p style={{ fontSize: '12px', color: 'var(--text-muted)', marginBottom: '4px' }}>Risk Factor Analysis</p>
+                                                        <p style={{ fontSize: '13px', fontWeight: 500, color: tx.riskScore > 70 ? 'var(--danger-text)' : 'var(--success-text)' }}>
+                                                            {tx.riskScore > 70 ? 'High probability of anomaly' : 'Standard pattern detected'}
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    )}
+                                </React.Fragment>
                             ))}
                         </tbody>
                     </table>

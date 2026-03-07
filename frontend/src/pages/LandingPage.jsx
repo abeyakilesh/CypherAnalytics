@@ -48,13 +48,10 @@ export default function LandingPage() {
                         <span style={{ fontWeight: 700, fontSize: '16px', color: 'var(--text-heading)' }}>CypherAnalytics</span>
                     </div>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-                        {/* Theme toggle */}
-                        <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                            <Sun style={{ width: 14, height: 14, color: theme === 'light' ? 'var(--warning)' : 'var(--text-muted)' }} />
-                            <button className="theme-toggle" onClick={toggle} aria-label="Toggle theme" />
-                            <Moon style={{ width: 14, height: 14, color: theme === 'dark' ? 'var(--primary)' : 'var(--text-muted)' }} />
-                        </div>
-                        <div style={{ height: '20px', width: '1px', background: 'var(--border)' }} />
+                        <Link to="/login" style={{
+                            fontSize: '14px', fontWeight: 500, color: 'var(--text-secondary)',
+                            textDecoration: 'none', transition: 'color 0.15s',
+                        }}>Sign In</Link>
                         <Link to="/login" style={{
                             fontSize: '14px', fontWeight: 500, color: 'var(--text-secondary)',
                             textDecoration: 'none', transition: 'color 0.15s',
@@ -98,10 +95,6 @@ export default function LandingPage() {
                     <button className="btn-primary" onClick={() => navigate('/signup')}
                         style={{ padding: '12px 32px', fontSize: '15px' }}>
                         Get Started <ArrowRight style={{ width: 16, height: 16, marginLeft: '6px', display: 'inline', verticalAlign: '-3px' }} />
-                    </button>
-                    <button className="btn-secondary" onClick={() => navigate('/demo')}
-                        style={{ padding: '12px 32px', fontSize: '15px' }}>
-                        Live Demo
                     </button>
                 </div>
             </section>
@@ -175,10 +168,6 @@ export default function LandingPage() {
                     <button className="btn-primary" onClick={() => navigate('/signup')}
                         style={{ padding: '12px 32px', fontSize: '15px' }}>
                         Start Free Trial
-                    </button>
-                    <button className="btn-secondary" onClick={() => navigate('/demo')}
-                        style={{ padding: '12px 32px', fontSize: '15px' }}>
-                        View Demo
                     </button>
                 </div>
             </section>

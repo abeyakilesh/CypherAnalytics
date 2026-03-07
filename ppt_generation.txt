@@ -1,0 +1,55 @@
+Project Title: CypherAnalytics - Fintech Privacy & Anomaly Monitoring Platform
+
+Slide 1: Title Slide
+- Title: CypherAnalytics
+- Subtitle: Next-Generation Fintech Privacy & Fraud Monitoring
+- Presenter Name / Team Name
+
+Slide 2: The Problem
+- Financial institutions handle massive amounts of sensitive PII (Personally Identifiable Information).
+- Rising threats of data breaches and sophisticated fraudulent transactions.
+- Lack of real-time visibility into how data is masked and protected during processing.
+- Security teams need unified dashboards to monitor both fraud and data privacy in real time.
+
+Slide 3: Our Solution - CypherAnalytics
+- A comprehensive, real-time dashboard for fintech operations.
+- Intercepts, analyzes, and classifies live financial traffic.
+- Combines fraud anomaly detection with a Privacy & Encryption Engine.
+- Provides Security Operations (SecOps) teams with actionable intelligence and automated data obfuscation.
+
+Slide 4: Key Features
+- Live Transaction Feed: Real-time monitoring of financial traffic with immediate risk scoring.
+- Privacy Intelligence: Active schema field classification tracking masking strategies (AES-256 Encryption, K-Anonymization).
+- Advanced Analytics: Visualizing transaction volume over time, high-risk merchant hotspots, and geographic distribution.
+- Role-Based Access Control (RBAC): Secured by JWT authentication to ensure only authorized personnel view sensitive analytical data.
+
+Slide 5: Architecture & Tech Stack
+- Frontend: React.js, Vite, Recharts (for dynamic data visualization), Lucide Icons.
+- Backend: Node.js, Express.js.
+- Database: MongoDB (document-based storage for transactions and users).
+- Security Layer: bcryptjs for password hashing, jsonwebtoken for stateless authentication.
+- Infrastructure: Simulated live-traffic generator feeding synthetic financial data directly into the DB.
+
+Slide 6: Fraud Detection & Explainability
+- Evaluates transactions on multiple vectors (amount anomalies, impossible geographic movement, vendor reputation).
+- Assigns a dynamic Risk Score (0-100) to every transaction.
+- Explainable AI (XAI) UI: Clicking on an alert breaks down *why* a transaction was flagged, turning black-box scores into transparent insights.
+
+Slide 7: Data Privacy & Compliance Engine
+- Real-Time Obfuscation Confidence metric tracks system protection levels.
+- System Guard categorizes data streams:
+   - "Account Number" -> Highly Sensitive (AES-256-CBC)
+   - "User Name" -> Sensitive PII (K-Anonymized Hash)
+   - "Amount" -> Public (Cleartext)
+- Interactive Privacy Simulator allows teams to test encryption layers on raw JSON payloads.
+
+Slide 8: Future Roadmap
+- Integration with live payment gateways (Stripe, Plaid).
+- Implementation of advanced Machine Learning models (Isolation Forests, Neural Networks) for dynamic scoring.
+- Automated compliance reporting (GDPR, CCPA) exports directly from the dashboard.
+- Real-time alerting integrations (Slack, PagerDuty, SMS).
+
+Slide 9: Conclusion & Q&A
+- CypherAnalytics ensures that as financial data flows at high velocities, privacy is guaranteed and fraud is caught instantly.
+- Thank You!
+- Questions?

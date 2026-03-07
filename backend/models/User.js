@@ -4,7 +4,16 @@ const userSchema = new mongoose.Schema({
     name: { type: String, required: true },
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
-    role: { type: String, enum: ['admin', 'analyst', 'viewer'], default: 'analyst' }
+    role: { type: String, enum: ['admin', 'analyst', 'viewer'], default: 'analyst' },
+    securitySettings: {
+        twoFactor: { type: Boolean, default: false },
+        loginAlerts: { type: Boolean, default: true }
+    },
+    apiKeys: [{
+        key: { type: String, required: true },
+        name: { type: String, required: true },
+        createdAt: { type: Date, default: Date.now }
+    }]
 }, { timestamps: true });
 
 module.exports = mongoose.model('User', userSchema);

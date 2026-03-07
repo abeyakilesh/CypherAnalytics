@@ -1,8 +1,6 @@
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid, Cell } from 'recharts';
 import { useTheme } from '../context/ThemeContext';
 
-const COLORS = ['#22C55E', '#F59E0B', '#EF4444'];
-
 const CustomTooltip = ({ active, payload }) => {
     if (!active || !payload?.length) return null;
     return (
@@ -31,8 +29,8 @@ export default function RiskDistributionChart({ data }) {
                 <YAxis tick={{ fontSize: 12, fill: textColor }} axisLine={false} tickLine={false} />
                 <Tooltip content={<CustomTooltip />} />
                 <Bar dataKey="count" radius={[4, 4, 0, 0]} barSize={32}>
-                    {data.map((_, i) => (
-                        <Cell key={i} fill={COLORS[i % COLORS.length]} />
+                    {data?.map((_, i) => (
+                        <Cell key={i} fill={theme === 'dark' ? '#3B82F6' : '#2563EB'} fillOpacity={1 - (i * 0.15)} />
                     ))}
                 </Bar>
             </BarChart>

@@ -32,10 +32,10 @@ export default function TransactionVolumeChart({ data }) {
                     </linearGradient>
                 </defs>
                 <CartesianGrid strokeDasharray="3 3" stroke={gridColor} />
-                <XAxis dataKey="hour" tick={{ fontSize: 12, fill: textColor }} axisLine={{ stroke: axisColor }} tickLine={false} />
+                <XAxis dataKey="time" tick={{ fontSize: 12, fill: textColor }} axisLine={{ stroke: axisColor }} tickLine={false} />
                 <YAxis tick={{ fontSize: 12, fill: textColor }} axisLine={false} tickLine={false} />
                 <Tooltip content={<CustomTooltip />} />
-                <Area type="monotone" dataKey="count" stroke={strokeColor} strokeWidth={2} fill="url(#tvGrad)" dot={false} />
+                <Area type="monotone" dataKey="count" stroke={strokeColor} strokeWidth={2} fill="url(#tvGrad)" dot={{ r: 3, fill: strokeColor, strokeWidth: 1, stroke: 'var(--bg-card)' }} activeDot={{ r: 6, strokeWidth: 0 }} />
             </AreaChart>
         </ResponsiveContainer>
     );

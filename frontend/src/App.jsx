@@ -24,7 +24,7 @@ function AppRoutes() {
       <Route path="/signup" element={<Signup />} />
 
       {/* Protected */}
-      <Route path="/dashboard" element={<Layout isConnected={isConnected} alertCount={alerts.length} />}>
+      <Route path="/dashboard" element={<Layout isConnected={isConnected} alertCount={alerts.length} alerts={alerts} />}>
         <Route index element={<Dashboard stats={stats} transactions={transactions} alerts={alerts} />} />
         <Route path="live" element={<LiveTransactions transactions={transactions} />} />
         <Route path="alerts" element={<FraudAlerts alerts={alerts} />} />
@@ -34,7 +34,7 @@ function AppRoutes() {
       </Route>
 
       {/* Demo — same layout, same data */}
-      <Route path="/demo" element={<Layout isConnected={isConnected} alertCount={alerts.length} />}>
+      <Route path="/demo" element={<Layout isConnected={isConnected} alertCount={alerts.length} alerts={alerts} />}>
         <Route index element={<Dashboard stats={stats} transactions={transactions} alerts={alerts} />} />
         <Route path="live" element={<LiveTransactions transactions={transactions} />} />
         <Route path="alerts" element={<FraudAlerts alerts={alerts} />} />

@@ -64,7 +64,7 @@ async function getAnalytics(req, res) {
             {
                 $group: {
                     _id: {
-                        $dateToString: { format: '%H:%M', date: '$timestamp' }
+                        $dateToString: { format: '%H:%M:%S', date: '$timestamp' }
                     },
                     count: { $sum: 1 },
                     volume: { $sum: '$amount' }

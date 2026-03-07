@@ -3,6 +3,7 @@ import { NavLink, Outlet, useNavigate } from 'react-router-dom';
 import { useTheme } from '../context/ThemeContext';
 import { useCurrency, CURRENCIES } from '../context/CurrencyContext';
 import { logout, getStoredUser } from '../services/api';
+import AlertPanel from '../components/AlertPanel';
 import {
     LayoutDashboard, Activity, ShieldAlert, BarChart3,
     Database, Settings, Bell, Search, Shield,
@@ -28,8 +29,9 @@ const navSections = [
     },
 ];
 
-export default function Layout({ isConnected, alertCount }) {
+export default function Layout({ isConnected, alertCount, alerts = [] }) {
     const [collapsed, setCollapsed] = useState(false);
+    const [showAlerts, setShowAlerts] = useState(false);
     const { theme, toggle } = useTheme();
     const { currency, setCurrency } = useCurrency();
     const navigate = useNavigate();
@@ -44,6 +46,7 @@ export default function Layout({ isConnected, alertCount }) {
                 display: 'flex', flexDirection: 'column',
                 transition: 'width 0.25s ease',
                 flexShrink: 0, overflow: 'hidden',
+                zIndex: 40,
             }}>
                 {/* Brand */}
                 <div style={{
@@ -123,7 +126,26 @@ export default function Layout({ isConnected, alertCount }) {
             </aside>
 
             {/* ── Main Area ── */}
-            <div style={{ flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden', minWidth: 0 }}>
+            <div style={{ flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden', minWidth: 0, position: 'relative' }}>
+
+                {/* ── Alert Panel Overlay ── */}
+                {showAlerts && (
+                    <>
+                        <div
+                            onClick={() => setShowAlerts(false)}
+                            style={{ position: 'absolute', inset: 0, zIndex: 45, background: 'rgba(0,0,0,0.1)' }}
+                        />
+                        <div style={{
+                            position: 'absolute', top: '64px', right: '24px',
+                            width: '420px', maxHeight: '80vh', overflowY: 'auto',
+                            zIndex: 50, boxShadow: 'var(--shadow-lg)',
+                            animation: 'slide-down 0.2s ease-out'
+                        }}>
+                            <AlertPanel alerts={alerts} />
+                        </div>
+                    </>
+                )}
+
                 {/* Header */}
                 <header style={{
                     height: '56px', flexShrink: 0,
@@ -132,6 +154,7 @@ export default function Layout({ isConnected, alertCount }) {
                     display: 'flex', alignItems: 'center', justifyContent: 'space-between',
                     padding: '0 24px',
                     transition: 'background 0.3s, border-color 0.3s',
+                    zIndex: 40,
                 }}>
                     {/* Status */}
                     <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
@@ -196,11 +219,16 @@ export default function Layout({ isConnected, alertCount }) {
 
                         <div style={{ height: '24px', width: '1px', background: 'var(--border)' }} />
 
-                        <button style={{
-                            position: 'relative', padding: '6px', borderRadius: '6px',
-                            background: 'transparent', border: 'none', cursor: 'pointer',
-                        }}>
-                            <Bell style={{ width: 18, height: 18, color: 'var(--text-secondary)' }} />
+                        <button
+                            onClick={() => setShowAlerts(!showAlerts)}
+                            style={{
+                                position: 'relative', padding: '6px', borderRadius: '6px',
+                                background: showAlerts ? 'var(--primary-light)' : 'transparent',
+                                border: 'none', cursor: 'pointer',
+                                transition: 'all 0.15s'
+                            }}
+                        >
+                            <Bell style={{ width: 18, height: 18, color: showAlerts ? 'var(--primary)' : 'var(--text-secondary)' }} />
                             {alertCount > 0 && (
                                 <span style={{
                                     position: 'absolute', top: '0', right: '0',
