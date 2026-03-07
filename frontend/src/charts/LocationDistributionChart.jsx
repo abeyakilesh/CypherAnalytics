@@ -11,13 +11,13 @@ const CustomTooltip = ({ active, payload }) => {
             borderRadius: '8px', padding: '8px 12px',
             boxShadow: 'var(--shadow-tooltip)',
         }}>
-            <p style={{ fontSize: '12px', color: 'var(--text-secondary)', marginBottom: '2px' }}>{payload[0].payload._id}</p>
+            <p style={{ fontSize: '12px', color: 'var(--text-secondary)', marginBottom: '2px' }}>{payload[0].payload.location}</p>
             <p style={{ fontSize: '13px', fontWeight: 600, color: payload[0].payload.fill }}>{payload[0].value} transactions</p>
         </div>
     );
 };
 
-const renderLabel = ({ _id, percent }) => `${_id} (${(percent * 100).toFixed(0)}%)`;
+const renderLabel = ({ location, percent }) => percent > 0.05 ? `${location} (${(percent * 100).toFixed(0)}%)` : '';
 
 export default function LocationDistributionChart({ data }) {
     const { theme } = useTheme();
@@ -27,7 +27,7 @@ export default function LocationDistributionChart({ data }) {
         <ResponsiveContainer width="100%" height={240}>
             <PieChart>
                 <Pie
-                    data={data} dataKey="count" nameKey="_id"
+                    data={data} dataKey="count" nameKey="location"
                     cx="50%" cy="50%" outerRadius={85} innerRadius={45}
                     label={renderLabel} labelLine={false}
                     stroke={strokeColor} strokeWidth={2}

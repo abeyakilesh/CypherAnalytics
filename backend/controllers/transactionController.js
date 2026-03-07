@@ -100,6 +100,8 @@ async function getAnalytics(req, res) {
             { $limit: 8 }
         ]);
 
+        const avgAmountVal = avgRisk[0] ? avgRisk[0].totalVolume / totalTransactions : 0;
+
         res.json({
             success: true,
             data: {
@@ -107,6 +109,7 @@ async function getAnalytics(req, res) {
                 suspiciousTransactions: suspiciousCount,
                 transactionVolume: avgRisk[0]?.totalVolume || 0,
                 averageRiskScore: Math.round(avgRisk[0]?.avg || 0),
+                avgAmount: avgAmountVal || 0,
                 volumeOverTime: volumeOverTime.map(v => ({ time: v._id, count: v.count, volume: v.volume })),
                 riskDistribution: riskDistribution.map(r => ({
                     range: r._id === 0 ? '0-19' : r._id === 20 ? '20-39' : r._id === 40 ? '40-59' : r._id === 60 ? '60-79' : '80-100',

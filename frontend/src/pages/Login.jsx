@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useTheme } from '../context/ThemeContext';
 import { Shield, Mail, Lock, Eye, EyeOff, ArrowRight, Sun, Moon } from 'lucide-react';
+import NetworkBackground from '../components/NetworkBackground';
 import { login } from '../services/api';
 
 export default function Login() {
@@ -29,19 +30,40 @@ export default function Login() {
         <div style={{ display: 'flex', minHeight: '100vh', background: 'var(--bg)', transition: 'background 0.3s' }}>
             {/* Left – Brand */}
             <div style={{
-                flex: 1, background: 'var(--sidebar-bg)',
+                flex: 1, background: 'var(--sidebar-bg)', position: 'relative', overflow: 'hidden',
                 display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '40px',
             }}>
-                <div style={{
-                    width: '56px', height: '56px', borderRadius: '14px', background: 'var(--primary)',
-                    display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '24px',
-                }}>
-                    <Shield style={{ width: 28, height: 28, color: 'white' }} />
+                <NetworkBackground />
+                <div style={{ position: 'relative', zIndex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', width: '100%' }}>
+                    <div style={{ position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '32px' }}>
+                        <div style={{ position: 'absolute', width: '120px', height: '120px', background: 'var(--primary)', filter: 'blur(44px)', opacity: 0.4, borderRadius: '50%' }} />
+                        <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ position: 'relative', zIndex: 1 }}>
+                            <rect width="64" height="64" rx="16" fill="url(#brandGrad)" />
+
+                            {/* Inner abstract geometry */}
+                            <path d="M20 32C20 25.3726 25.3726 20 32 20C38.6274 20 44 25.3726 44 32C44 38.6274 38.6274 44 32 44" stroke="white" strokeWidth="3" strokeLinecap="round" strokeDasharray="6 6" />
+                            <circle cx="32" cy="32" r="6" fill="white" />
+                            <path d="M32 14V20M32 44V50M14 32H20M44 32H50" stroke="white" strokeWidth="3" strokeLinecap="round" />
+                            <circle cx="32" cy="14" r="2" fill="white" />
+                            <circle cx="32" cy="50" r="2" fill="white" />
+                            <circle cx="14" cy="32" r="2" fill="white" />
+                            <circle cx="50" cy="32" r="2" fill="white" />
+
+                            <defs>
+                                <linearGradient id="brandGrad" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+                                    <stop stopColor="#3B82F6" />
+                                    <stop offset="1" stopColor="#1D4ED8" />
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
+                    <h1 style={{ fontSize: '38px', fontWeight: 800, color: '#FFFFFF', letterSpacing: '-0.04em', marginBottom: '16px', textAlign: 'center', lineHeight: 1.1 }}>
+                        Cypher<span style={{ color: '#3B82F6' }}>Analytics</span>
+                    </h1>
+                    <p style={{ fontSize: '16px', color: '#9CA3AF', textAlign: 'center', maxWidth: '360px', lineHeight: 1.6, fontWeight: 400 }}>
+                        Enterprise-grade transaction monitoring with AI-powered privacy protection.
+                    </p>
                 </div>
-                <h1 style={{ fontSize: '24px', fontWeight: 700, color: '#F9FAFB', marginBottom: '8px' }}>CypherAnalytics</h1>
-                <p style={{ fontSize: '14px', color: '#9CA3AF', textAlign: 'center', maxWidth: '300px', lineHeight: 1.6 }}>
-                    Enterprise-grade transaction monitoring with AI-powered privacy protection.
-                </p>
             </div>
 
             {/* Right – Form */}
@@ -82,7 +104,7 @@ export default function Login() {
                                     placeholder="you@company.com" required
                                     style={{
                                         flex: 1, border: 'none', outline: 'none', padding: '12px 10px',
-                                        fontSize: '14px', background: 'transparent', color: 'var(--text)',
+                                        fontSize: '14px', background: 'transparent', color: 'var(--text)', width: '100%'
                                     }}
                                 />
                             </div>
@@ -103,7 +125,7 @@ export default function Login() {
                                     placeholder="••••••••" required
                                     style={{
                                         flex: 1, border: 'none', outline: 'none', padding: '12px 10px',
-                                        fontSize: '14px', background: 'transparent', color: 'var(--text)',
+                                        fontSize: '14px', background: 'transparent', color: 'var(--text)', width: '100%'
                                     }}
                                 />
                                 <button type="button" onClick={() => setShowPw(!showPw)}

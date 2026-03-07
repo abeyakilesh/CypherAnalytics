@@ -5,6 +5,7 @@ const { Server } = require('socket.io');
 const mongoose = require('mongoose');
 const cors = require('cors');
 
+const authRoutes = require('./routes/authRoutes');
 const transactionRoutes = require('./routes/transactionRoutes');
 const { generateTransaction } = require('./services/transactionGenerator');
 const { encryptSensitiveFields, decryptSensitiveFields } = require('./services/encryptionService');
@@ -23,6 +24,7 @@ app.use(cors());
 app.use(express.json());
 
 // Routes
+app.use('/api/auth', authRoutes);
 app.use('/api', transactionRoutes);
 
 // Health check

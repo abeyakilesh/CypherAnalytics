@@ -9,24 +9,24 @@ function AlertItem({ alert }) {
 
     // Generate some dynamic mock context based on the alert
     const getFlagReason = () => {
-        if (alert.amount > 10000) return 'Transaction exceeds historical average by 400%.';
-        if (alert.riskScore > 80) return 'Multiple rapid transactions detected from a high-risk IP range.';
-        return 'Unusual merchant category combined with out-of-state geolocation.';
+        if (alert.amount > 10000) return `Anomaly detected: Transaction (TxID: ${alert.transactionID}) deviates >4.2σ from historical baseline volume.`;
+        if (alert.riskScore > 80) return `Composite Risk >80: Correlated IP velocity mismatch and unauthorized merchant MCC classification.`;
+        return `Geolocation Mismatch Threshold Exceeded: IP coordinates drift >500mi from stored localized device fingerprint.`;
     };
 
     const getProblemDetails = () => {
-        if (alert.riskScore > 85) return 'Velocity anomaly and device fingerprint mismatch detected.';
-        return 'Standard behavioral model deviation (Location/Time mismatch).';
+        if (alert.riskScore > 85) return `Engine flagged anomalous transaction velocity vectors combined with unverified multi-factor token persistence failure.`;
+        return `Algorithm identified severe spatial-temporal divergence against user's trained K-Means behavioral clustering model.`;
     };
 
     const getResolutionSteps = () => {
-        if (alert.riskScore > 85) return '1. Freeze account immediately. 2. Request government ID verification. 3. Call customer on file.';
-        return '1. Send push notification or SMS for 2FA validation. 2. Flag for manual review if ignored.';
+        if (alert.riskScore > 85) return '1. Initiate automated account throttle protocol. 2. Trigger secure biometric re-verification loop. 3. Dispatch L3 manual review ticket.';
+        return '1. Execute out-of-band push notification for SMS-2FA confirmation. 2. Await cryptographic challenge-response validation.';
     };
 
     const getDowntime = () => {
-        if (alert.riskScore > 85) return 'Expected resolving time: 24-48 hours (Manual Review Required)';
-        return 'Expected resolving time: < 5 mins (User Verification Required)';
+        if (alert.riskScore > 85) return 'Resolution SLA: < 12 hours (L3 Manual Intervention Protocol Engaged)';
+        return 'Resolution SLA: < 2 mins (Automated Cryptographic Verification Pending)';
     };
 
     const handleAction = (message) => {
@@ -86,42 +86,42 @@ function AlertItem({ alert }) {
                         ))}
                     </div>
 
-                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '24px' }}>
-                        {/* Left Column: Reasons & Problem */}
-                        <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+                        {/* Reasons & Problem */}
+                        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '24px' }}>
                             <div>
-                                <h4 style={{ fontSize: '13px', fontWeight: 600, color: 'var(--text)', display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '6px' }}>
-                                    <ShieldAlert size={14} color="var(--danger)" /> Reason for Flagging
+                                <h4 style={{ fontSize: '13px', fontWeight: 600, color: 'var(--text)', display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '8px' }}>
+                                    <ShieldAlert size={14} color="var(--danger)" /> Algorithmic Flag Reason
                                 </h4>
-                                <p style={{ fontSize: '13px', color: 'var(--text-secondary)', lineHeight: 1.5 }}>
+                                <p style={{ fontSize: '13px', color: 'var(--text-secondary)', lineHeight: 1.6, background: 'var(--bg-card)', padding: '12px', borderRadius: '8px', border: '1px solid var(--border)' }}>
                                     {getFlagReason()}
                                 </p>
                             </div>
                             <div>
-                                <h4 style={{ fontSize: '13px', fontWeight: 600, color: 'var(--text)', display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '6px' }}>
-                                    <Info size={14} color="var(--info)" /> Core Problem
+                                <h4 style={{ fontSize: '13px', fontWeight: 600, color: 'var(--text)', display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '8px' }}>
+                                    <Info size={14} color="var(--info)" /> Technical Core Problem
                                 </h4>
-                                <p style={{ fontSize: '13px', color: 'var(--text-secondary)', lineHeight: 1.5 }}>
+                                <p style={{ fontSize: '13px', color: 'var(--text-secondary)', lineHeight: 1.6, background: 'var(--bg-card)', padding: '12px', borderRadius: '8px', border: '1px solid var(--border)' }}>
                                     {getProblemDetails()}
                                 </p>
                             </div>
                         </div>
 
-                        {/* Right Column: Resolution & Downtime */}
-                        <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+                        {/* Resolution & Downtime */}
+                        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '24px' }}>
                             <div>
-                                <h4 style={{ fontSize: '13px', fontWeight: 600, color: 'var(--text)', display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '6px' }}>
-                                    <CheckCircle size={14} color="var(--success)" /> How to Resolve
+                                <h4 style={{ fontSize: '13px', fontWeight: 600, color: 'var(--text)', display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '8px' }}>
+                                    <CheckCircle size={14} color="var(--success)" /> Intelligent Auto-Resolution Path
                                 </h4>
-                                <p style={{ fontSize: '13px', color: 'var(--text-secondary)', lineHeight: 1.5 }}>
+                                <p style={{ fontSize: '13px', color: 'var(--text-secondary)', lineHeight: 1.6, background: 'var(--bg-card)', padding: '12px', borderRadius: '8px', border: '1px solid var(--border)' }}>
                                     {getResolutionSteps()}
                                 </p>
                             </div>
                             <div>
-                                <h4 style={{ fontSize: '13px', fontWeight: 600, color: 'var(--text)', display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '6px' }}>
-                                    <Clock size={14} color="var(--warning)" /> Resolution Time / Impact
+                                <h4 style={{ fontSize: '13px', fontWeight: 600, color: 'var(--text)', display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '8px' }}>
+                                    <Clock size={14} color="var(--warning)" /> Resolution SLA & Impact
                                 </h4>
-                                <p style={{ fontSize: '13px', color: 'var(--text-secondary)', lineHeight: 1.5 }}>
+                                <p style={{ fontSize: '13px', color: 'var(--text-secondary)', lineHeight: 1.6, background: 'var(--bg-card)', padding: '12px', borderRadius: '8px', border: '1px solid var(--border)' }}>
                                     {getDowntime()}
                                 </p>
                             </div>
