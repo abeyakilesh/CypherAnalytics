@@ -1,0 +1,202 @@
+[
+    {
+        "transactionID": "TXN-001",
+        "userID": "USR-1001",
+        "userName": "Alice Johnson",
+        "accountNumber": "4532-8891-0023-2391",
+        "amount": 150.75,
+        "merchant": "Amazon",
+        "location": "New York, USA",
+        "timestamp": "2026-03-07T08:15:00Z"
+    },
+    {
+        "transactionID": "TXN-002",
+        "userID": "USR-1002",
+        "userName": "Robert Smith",
+        "accountNumber": "5214-7723-4456-8810",
+        "amount": 9850.00,
+        "merchant": "Wire Transfer",
+        "location": "Lagos, Nigeria",
+        "timestamp": "2026-03-07T08:16:30Z"
+    },
+    {
+        "transactionID": "TXN-003",
+        "userID": "USR-1003",
+        "userName": "Maria Garcia",
+        "accountNumber": "3782-1200-5543-9912",
+        "amount": 42.30,
+        "merchant": "Starbucks",
+        "location": "San Francisco, USA",
+        "timestamp": "2026-03-07T08:18:00Z"
+    },
+    {
+        "transactionID": "TXN-004",
+        "userID": "USR-1001",
+        "userName": "Alice Johnson",
+        "accountNumber": "4532-8891-0023-2391",
+        "amount": 12500.00,
+        "merchant": "International Wire",
+        "location": "Moscow, Russia",
+        "timestamp": "2026-03-07T08:18:15Z"
+    },
+    {
+        "transactionID": "TXN-005",
+        "userID": "USR-1004",
+        "userName": "James Wilson",
+        "accountNumber": "6011-4422-8890-1155",
+        "amount": 320.00,
+        "merchant": "Best Buy",
+        "location": "Chicago, USA",
+        "timestamp": "2026-03-07T08:20:00Z"
+    },
+    {
+        "transactionID": "TXN-006",
+        "userID": "USR-1005",
+        "userName": "Sarah Chen",
+        "accountNumber": "4916-3300-7712-4489",
+        "amount": 87.99,
+        "merchant": "Netflix",
+        "location": "Los Angeles, USA",
+        "timestamp": "2026-03-07T08:22:00Z"
+    },
+    {
+        "transactionID": "TXN-007",
+        "userID": "USR-1002",
+        "userName": "Robert Smith",
+        "accountNumber": "5214-7723-4456-8810",
+        "amount": 7200.00,
+        "merchant": "Crypto Exchange",
+        "location": "Cayman Islands",
+        "timestamp": "2026-03-07T08:22:10Z"
+    },
+    {
+        "transactionID": "TXN-008",
+        "userID": "USR-1006",
+        "userName": "Emily Davis",
+        "accountNumber": "3456-7890-1234-5678",
+        "amount": 55.40,
+        "merchant": "Uber",
+        "location": "Boston, USA",
+        "timestamp": "2026-03-07T08:25:00Z"
+    },
+    {
+        "transactionID": "TXN-009",
+        "userID": "USR-1004",
+        "userName": "James Wilson",
+        "accountNumber": "6011-4422-8890-1155",
+        "amount": 310.00,
+        "merchant": "Best Buy",
+        "location": "Chicago, USA",
+        "timestamp": "2026-03-07T08:25:05Z"
+    },
+    {
+        "transactionID": "TXN-010",
+        "userID": "USR-1004",
+        "userName": "James Wilson",
+        "accountNumber": "6011-4422-8890-1155",
+        "amount": 295.00,
+        "merchant": "Best Buy",
+        "location": "Chicago, USA",
+        "timestamp": "2026-03-07T08:25:12Z"
+    },
+    {
+        "transactionID": "TXN-011",
+        "userID": "USR-1007",
+        "userName": "David Kim",
+        "accountNumber": "4000-1234-5678-9010",
+        "amount": 1200.00,
+        "merchant": "Apple Store",
+        "location": "Seoul, South Korea",
+        "timestamp": "2026-03-07T08:28:00Z"
+    },
+    {
+        "transactionID": "TXN-012",
+        "userID": "USR-1008",
+        "userName": "Priya Patel",
+        "accountNumber": "5500-0000-0000-0004",
+        "amount": 25.00,
+        "merchant": "Spotify",
+        "location": "Mumbai, India",
+        "timestamp": "2026-03-07T08:30:00Z"
+    },
+    {
+        "transactionID": "TXN-013",
+        "userID": "USR-1005",
+        "userName": "Sarah Chen",
+        "accountNumber": "4916-3300-7712-4489",
+        "amount": 15750.00,
+        "merchant": "Luxury Watches Ltd",
+        "location": "Dubai, UAE",
+        "timestamp": "2026-03-07T08:30:05Z"
+    },
+    {
+        "transactionID": "TXN-014",
+        "userID": "USR-1009",
+        "userName": "Michael Brown",
+        "accountNumber": "4111-1111-1111-1111",
+        "amount": 430.00,
+        "merchant": "Target",
+        "location": "Dallas, USA",
+        "timestamp": "2026-03-07T08:32:00Z"
+    },
+    {
+        "transactionID": "TXN-015",
+        "userID": "USR-1010",
+        "userName": "Linda Martinez",
+        "accountNumber": "5105-1051-0510-5100",
+        "amount": 62.80,
+        "merchant": "Whole Foods",
+        "location": "Austin, USA",
+        "timestamp": "2026-03-07T08:35:00Z"
+    },
+    {
+        "transactionID": "TXN-016",
+        "userID": "USR-1007",
+        "userName": "David Kim",
+        "accountNumber": "4000-1234-5678-9010",
+        "amount": 18200.00,
+        "merchant": "Offshore Holdings",
+        "location": "Panama City, Panama",
+        "timestamp": "2026-03-07T08:35:10Z"
+    },
+    {
+        "transactionID": "TXN-017",
+        "userID": "USR-1003",
+        "userName": "Maria Garcia",
+        "accountNumber": "3782-1200-5543-9912",
+        "amount": 15.99,
+        "merchant": "McDonald's",
+        "location": "San Francisco, USA",
+        "timestamp": "2026-03-07T08:38:00Z"
+    },
+    {
+        "transactionID": "TXN-018",
+        "userID": "USR-1006",
+        "userName": "Emily Davis",
+        "accountNumber": "3456-7890-1234-5678",
+        "amount": 2300.00,
+        "merchant": "Jewelry Store",
+        "location": "Miami, USA",
+        "timestamp": "2026-03-07T08:40:00Z"
+    },
+    {
+        "transactionID": "TXN-019",
+        "userID": "USR-1009",
+        "userName": "Michael Brown",
+        "accountNumber": "4111-1111-1111-1111",
+        "amount": 8900.00,
+        "merchant": "Wire Transfer",
+        "location": "Zurich, Switzerland",
+        "timestamp": "2026-03-07T08:40:05Z"
+    },
+    {
+        "transactionID": "TXN-020",
+        "userID": "USR-1010",
+        "userName": "Linda Martinez",
+        "accountNumber": "5105-1051-0510-5100",
+        "amount": 33.50,
+        "merchant": "Gas Station",
+        "location": "Austin, USA",
+        "timestamp": "2026-03-07T08:42:00Z"
+    }
+]
