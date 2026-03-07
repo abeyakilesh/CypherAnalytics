@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import {
-    Activity, ShieldAlert, DollarSign, TrendingUp, Shield
+    Activity, ShieldAlert, DollarSign, TrendingUp, Shield,
+    Lock, PieChart, Target, Network, MapPin, Zap
 } from 'lucide-react';
 import { getAnalytics, getPrivacyInfo } from '../services/api';
 import MetricCard from '../components/MetricCard';
@@ -50,6 +51,33 @@ export default function Dashboard({ stats, transactions, alerts }) {
                 {kpis.map((kpi, i) => (
                     <MetricCard key={i} {...kpi} delay={i * 50} />
                 ))}
+            </div>
+
+            {/* ── Intelligence Layers Overview ── */}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                    <h3 style={{ fontSize: '16px', fontWeight: 600, color: 'var(--text-heading)' }}>Platform Intelligence Layers</h3>
+                </div>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '16px' }}>
+                    {[
+                        { title: 'Privacy Intelligence', desc: 'Privacy protection score and data exposure analytics', icon: Lock, color: 'var(--primary)' },
+                        { title: 'Behavioral Insights', desc: 'Understand user spending patterns', icon: PieChart, color: 'var(--accent)' },
+                        { title: 'Explainable Fraud', desc: 'Shows why a transaction is flagged', icon: Target, color: 'var(--danger)' },
+                        { title: 'Network Analysis', desc: 'Detect suspicious merchant or user clusters', icon: Network, color: 'var(--warning)' },
+                        { title: 'Geographic Movement', desc: 'Detect impossible travel between transactions', icon: MapPin, color: 'var(--success)' },
+                        { title: 'System Performance', desc: 'Monitor transaction processing speed', icon: Zap, color: 'var(--primary)' },
+                    ].map((layer, i) => (
+                        <div key={i} className="card card-hover" style={{ padding: '16px', borderRadius: '12px', display: 'flex', gap: '16px', alignItems: 'center' }}>
+                            <div style={{ padding: '10px', borderRadius: '8px', background: `var(--bg-card)`, border: `1px solid ${layer.color}40`, display: 'flex' }}>
+                                <layer.icon style={{ width: 18, height: 18, color: layer.color }} />
+                            </div>
+                            <div>
+                                <h4 style={{ fontSize: '13px', fontWeight: 600, color: 'var(--text-heading)', marginBottom: '2px' }}>{layer.title}</h4>
+                                <p style={{ fontSize: '12px', color: 'var(--text-secondary)', lineHeight: 1.4 }}>{layer.desc}</p>
+                            </div>
+                        </div>
+                    ))}
+                </div>
             </div>
 
             {/* ── Main Analytics Grid (2 col) ── */}

@@ -19,13 +19,14 @@ export function CurrencyProvider({ children }) {
         localStorage.setItem('fintech_currency', currency);
     }, [currency]);
 
-    const formatCurrency = (amount, maximumSignificantDigits = 21) => {
+    const formatCurrency = (amount) => {
         if (amount === undefined || amount === null) return '';
         const curr = CURRENCIES[currency];
         return new Intl.NumberFormat(curr.locale, {
             style: 'currency',
             currency: curr.code,
-            maximumSignificantDigits
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
         }).format(amount);
     };
 
