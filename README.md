@@ -34,7 +34,7 @@
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
 ### 1. Prerequisites
 - **Node.js**: v18 or newer
